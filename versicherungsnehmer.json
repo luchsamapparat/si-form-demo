@@ -1,0 +1,336 @@
+
+{
+  "adelstitel" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ { } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "adressZusatz" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ { } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "anrede" : {
+    "value" : {
+      "choices" : [ {
+        "data" : "FRAU",
+        "label" : "Frau"
+      }, {
+        "data" : "HERR",
+        "label" : "Herr"
+      } ],
+      "type" : "ENUM",
+      "selected" : [ {
+        "data" : "FRAU",
+        "label" : "Frau"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "arbeitgeber" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ { } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "beruflicheTaetigkeit" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ { } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "berufsstand" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "ENUM",
+      "selected" : [ {
+        "label" : "nicht gewählt"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "berufsstandErgaenzung" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "ENUM",
+      "selected" : [ {
+        "label" : "nicht gewählt"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "branche" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "ENUM",
+      "selected" : [ ]
+    },
+    "meta" : {
+      "flags" : [ ]
+    }
+  },
+  "email" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ {
+        "data" : ""
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "facebook" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ {
+        "data" : ""
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "familienstand" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "ENUM",
+      "selected" : [ {
+        "label" : "nicht gewählt"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "geburtsdatum" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "DATE",
+      "selected" : [ {
+        "data" : "2020-01-01"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ {
+        "nummer" : "T-Geburtsdatum-02",
+        "art" : "FEHLER",
+        "kategorie" : "PLAUSIBILISIERUNG",
+        "stufe" : "TARIFIERUNG",
+        "text" : "Der Antragsteller ist noch nicht volljährig. Bitte wählen Sie einen volljährigen Antragsteller aus."
+      } ]
+    }
+  },
+  "inDeutschlandAnsaessigSeit" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "DATE",
+      "selected" : [ { } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "mobil" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ {
+        "data" : ""
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "nachname" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ {
+        "data" : "Beeblebro?"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ {
+        "nummer" : "T-Freitext-Gültige-Zeichen",
+        "art" : "FEHLER",
+        "kategorie" : "PLAUSIBILISIERUNG",
+        "stufe" : "TARIFIERUNG",
+        "text" : "Nachname: Folgende Zeichen dürfen in diesem Eingabefeld nicht verwendet werden: ?"
+      } ]
+    }
+  },
+  "namenszusatz" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ { } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "ort" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ {
+        "data" : "Hamburg#"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ {
+        "nummer" : "T-Freitext-Gültige-Zeichen",
+        "art" : "FEHLER",
+        "kategorie" : "PLAUSIBILISIERUNG",
+        "stufe" : "TARIFIERUNG",
+        "text" : "Wohnort: Folgende Zeichen dürfen in diesem Eingabefeld nicht verwendet werden: #"
+      } ]
+    }
+  },
+  "plz" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ {
+        "data" : "20255"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "staatsangehorigkeit" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "ENUM",
+      "selected" : [ {
+        "label" : "nicht gewählt"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "strasseHausnummer" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ {
+        "data" : "Clasingstr.11"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "telefax" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ {
+        "data" : ""
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "telefon" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ {
+        "data" : ""
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "titel" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ { } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "vorname" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ {
+        "data" : "Zaphod"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "website" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "TEXT",
+      "selected" : [ {
+        "data" : ""
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  }
+}

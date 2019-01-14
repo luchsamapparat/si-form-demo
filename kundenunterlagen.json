@@ -1,0 +1,209 @@
+{
+  "mitVerkaufsunterlagen" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "BOOLEAN",
+      "selected" : [ {
+        "data" : false
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "anschreibeform" : {
+    "value" : {
+      "choices" : [ {
+        "data" : "ICH",
+        "label" : "Ich-Form"
+      }, {
+        "data" : "WIR",
+        "label" : "Wir-Form"
+      } ],
+      "type" : "ENUM",
+      "selected" : [ {
+        "data" : "ICH",
+        "label" : "Ich-Form"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "PFLICHT", "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "vermittlerdaten" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "BOOLEAN",
+      "selected" : [ {
+        "data" : true
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "ratingSiegel" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "BOOLEAN",
+      "selected" : [ {
+        "data" : false
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "PFLICHT" ],
+      "meldungen" : [ ]
+    }
+  },
+  "verkaufsunterlagen" : {
+    "value" : {
+      "choices" : [ {
+        "data" : "5807601",
+        "label" : "Flyerbroschüre Haushaltglas - Oft fängt ganz harmlos an was in einem Scherbenhaufen ende"
+      }, {
+        "data" : "5808405",
+        "label" : "Leistungsübersicht Hausrat und Haushaltglasversicherung"
+      } ],
+      "type" : "ENUM",
+      "selected" : [ {
+        "data" : "5808405",
+        "label" : "Leistungsübersicht Hausrat und Haushaltglasversicherung"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "kvSchnellUebersicht" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "BOOLEAN",
+      "selected" : [ {
+        "data" : false
+      } ]
+    },
+    "meta" : {
+      "flags" : [ ],
+      "meldungen" : [ ]
+    }
+  },
+  "ausgabeform" : {
+    "value" : {
+      "choices" : [ {
+        "data" : "CD_DVD",
+        "label" : "auf CD/DVD brennen"
+      }, {
+        "data" : "DOWNLOAD",
+        "label" : "PDF erzeugen"
+      }, {
+        "data" : "E_MAIL",
+        "label" : "sicherer Dokumentenversand"
+      }, {
+        "data" : "BRIEF",
+        "label" : "über die HV drucken und versenden"
+      } ],
+      "type" : "ENUM",
+      "selected" : [ {
+        "data" : "DOWNLOAD",
+        "label" : "PDF erzeugen"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "PFLICHT", "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "verbraucherInfos" : {
+    "value" : {
+      "choices" : [ {
+        "data" : "UNTERLAGEN_ANTRAG",
+        "label" : "Unterlagen Verzichtsverfahren"
+      }, {
+        "data" : "KUNDENINFO_VVG_KOMPLETT",
+        "label" : "Verbraucherinfos (komplett)"
+      } ],
+      "type" : "ENUM",
+      "selected" : [ {
+        "data" : "KUNDENINFO_VVG_KOMPLETT",
+        "label" : "Verbraucherinfos (komplett)"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  },
+  "infoblaetter" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "ENUM",
+      "selected" : [ ]
+    },
+    "meta" : {
+      "flags" : [ ],
+      "meldungen" : [ ]
+    }
+  },
+  "logo" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "BOOLEAN",
+      "selected" : [ {
+        "data" : false
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR", "PFLICHT" ],
+      "meldungen" : [ ]
+    }
+  },
+  "dokumentversandAn" : {
+    "value" : {
+      "choices" : [ {
+        "data" : "VORSCHLAGS_EMPFAENGER",
+        "label" : "Vorschlagsempfänger"
+      }, {
+        "data" : "VERMITTLER",
+        "label" : "Vermittler"
+      } ],
+      "type" : "ENUM",
+      "selected" : [ {
+        "label" : "nicht gewählt"
+      } ]
+    },
+    "meta" : {
+      "flags" : [ ],
+      "meldungen" : [ ]
+    }
+  },
+  "vorschlagdruckPdfAntrag" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "BOOLEAN",
+      "selected" : [ {
+        "data" : false
+      } ]
+    },
+    "meta" : {
+      "flags" : [ ],
+      "meldungen" : [ ]
+    }
+  },
+  "mitInfoblaettern" : {
+    "value" : {
+      "choices" : [ ],
+      "type" : "BOOLEAN",
+      "selected" : [ {
+        "data" : false
+      } ]
+    },
+    "meta" : {
+      "flags" : [ "SICHTBAR" ],
+      "meldungen" : [ ]
+    }
+  }
+}
