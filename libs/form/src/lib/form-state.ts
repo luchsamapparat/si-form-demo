@@ -64,10 +64,10 @@ function applyAbstractFormState(control: AbstractControl, controlState: Abstract
     }
 
     if (controlState.value !== control.value) {
-        control.setValue(controlState.value);
+        control.setValue(controlState.value, { emitEvent: false });
     }
 
     if (controlState.errors !== control.errors) {
-        control.setErrors(controlState.errors);
+        control.setErrors(controlState.errors, { emitEvent: false });
     }
 }

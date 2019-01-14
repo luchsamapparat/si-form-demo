@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { applyFormState, toFormState } from '@si/form';
-import { isEmpty, negate } from 'lodash-es';
-import { filter, map } from 'rxjs/operators';
+import { applyFormState, FormGroupState, toFormState } from '@si/form';
+import { cloneDeep, isEmpty, negate } from 'lodash-es';
+import { Observable, of } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs/operators';
 
 interface Profile {
     firstName: string;
@@ -55,6 +56,17 @@ export class DemoFormComponent {
         });
 
         this.profileForm.valueChanges.pipe(
+            map(() => toFormState(this.profileForm)),
+            switchMap(formState => formBehavior(formState)),
+            map(updatedFormState => applyFormState(
+                this.profileForm,
+                updatedFormState
+            ))
+        )
+            .subscribe();
+
+
+        this.profileForm.valueChanges.pipe(
             map((profile: Profile) => profile.webIdentities),
             filter(webIdentities => webIdentities.every(negate(isEmpty))),
         )
@@ -82,17 +94,26 @@ export class DemoFormComponent {
         return toFormState(this.profileForm);
     }
 
-    updateFormState() {
-        const formState = toFormState(this.profileForm);
-        formState.controls.firstName.value = 'Marvin';
-        formState.controls.firstName.disabled = true;
-        formState.controls.lastName.value = 'Luchs';
-        formState.controls.lastName.disabled = true;
+    // updateFormState() {
+    //     const formState = toFormState(this.profileForm);
 
-        applyFormState(
-            this.profileForm,
-            formState
-        );
+    //     const updatedFormState = formBehavior(formState);
+
+    //     applyFormState(
+    //         this.profileForm,
+    //         updatedFormState
+    //     );
+    // }
+
+}
+
+function formBehavior(formState: FormGroupState): Observable<FormGroupState> {
+    const updatedFormState = cloneDeep(formState);
+
+    if (formState.controls.firstName.value === 'Marvin') {
+        updatedFormState.controls.lastName.value = 'Luchs';
+        updatedFormState.controls.lastName.disabled = true;
     }
 
+    return of(updatedFormState);
 }
