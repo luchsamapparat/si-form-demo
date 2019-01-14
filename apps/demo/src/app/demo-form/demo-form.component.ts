@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { applyFormState, toFormState } from '@si/form';
 import { isEmpty, negate } from 'lodash-es';
 import { filter, map } from 'rxjs/operators';
 
@@ -75,6 +76,23 @@ export class DemoFormComponent {
         if (hasEmptyValue && !isLast) {
             this.webIdentities.removeAt(index);
         }
+    }
+
+    get formState() {
+        return toFormState(this.profileForm);
+    }
+
+    updateFormState() {
+        const formState = toFormState(this.profileForm);
+        formState.controls.firstName.value = 'Marvin';
+        formState.controls.firstName.disabled = true;
+        formState.controls.lastName.value = 'Luchs';
+        formState.controls.lastName.disabled = true;
+
+        applyFormState(
+            this.profileForm,
+            formState
+        );
     }
 
 }

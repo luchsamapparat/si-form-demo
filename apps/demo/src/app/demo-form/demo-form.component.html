@@ -70,4 +70,6 @@
     </div>
 </form>
 
-<pre>{{ profileForm.value | json }}</pre>
+<button class="btn btn-secondary" (click)="updateFormState()">Set Name</button>
+
+<pre class="mt-5">{{ formState | json }}</pre>
