@@ -63,15 +63,13 @@
     <div class="form-group row" formArrayName="webIdentities">
         <label class="col-2 col-form-label">Web Identities</label>
         <div class="col-10">
-            <div [ngClass]="{ 'mt-3': i > 0 }" *ngFor="let address of webIdentities.controls; let i=index">
-                <input type="url" class="form-control" [formControlName]="i" (blur)="removeWebIdentityFormControlIfEmpty($event, i)" />
+            <div
+                [ngClass]="{ 'mt-3': i > 0 }"
+                *ngFor="let address of profileForm.controls.webIdentities.controls; let i=index">
+                <input type="url" class="form-control" [formControlName]="i" />
             </div>
         </div>
     </div>
 </form>
-
-<!-- <pre>{{ profileForm.value | json }}</pre> -->
-
-<button class="btn btn-secondary" (click)="updateFormState()">Set Name</button>
 
 <pre class="mt-5">{{ formState | json }}</pre>

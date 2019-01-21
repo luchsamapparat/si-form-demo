@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { applyFormState, FormGroupState, toFormState } from '@si/form';
-import { cloneDeep, isEmpty, negate } from 'lodash-es';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { applyFormState, FormArrayState, formControlState, FormGroupState, toFormState } from '@si/form';
+import { detailedDiff } from 'deep-object-diff';
+import { cloneDeep, isEmpty } from 'lodash-es';
 import { Observable, of } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { filter, map, pairwise, startWith, switchMap, tap } from 'rxjs/operators';
 
 interface Profile {
     firstName: string;
@@ -30,7 +31,7 @@ enum Country {
     selector: 'si-demo-form',
     templateUrl: './demo-form.component.html',
     styleUrls: ['./demo-form.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DemoFormComponent {
 
@@ -40,11 +41,11 @@ export class DemoFormComponent {
         private fb: FormBuilder
     ) {
         this.profileForm = this.fb.group({
-            firstName: [],
+            firstName: [null, Validators.required],
             lastName: [],
             age: [],
             address: this.fb.group({
-                street: [],
+                street: [null, Validators.required],
                 houseNo: [],
                 zip: [],
                 city: [],
@@ -55,59 +56,43 @@ export class DemoFormComponent {
             ])
         });
 
+        // TODO: find nicer solution to prevent parallel form state calculations
+        let pendingCalculation = false;
+
         this.profileForm.valueChanges.pipe(
+            startWith(this.profileForm.value),
             map(() => toFormState(this.profileForm)),
-            switchMap(formState => formBehavior(formState)),
-            map(updatedFormState => applyFormState(
-                this.profileForm,
-                updatedFormState
+            pairwise(),
+
+            filter(() => !pendingCalculation),
+            tap(() => pendingCalculation = true),
+
+            switchMap(([previous, next]) => applyFormBehavior(
+                next,
+                previous,
+                detailedDiff(previous, next)
             ))
         )
-            .subscribe();
+            .subscribe(updatedFormState => {
+                applyFormState(
+                    this.profileForm,
+                    updatedFormState
+                );
+                pendingCalculation = false;
+            });
 
-
-        this.profileForm.valueChanges.pipe(
-            map((profile: Profile) => profile.webIdentities),
-            filter(webIdentities => webIdentities.every(negate(isEmpty))),
-        )
-            .subscribe(() => this.addWebIdentityFormControl())
-    }
-
-    get webIdentities() {
-        return <FormArray> this.profileForm.controls.webIdentities;
-    }
-
-    addWebIdentityFormControl() {
-        this.webIdentities.push(new FormControl());
-    }
-
-    removeWebIdentityFormControlIfEmpty(event: Event, index: number) {
-        const hasEmptyValue = isEmpty((<HTMLInputElement> event.target).value);
-        const isLast = index === this.webIdentities.controls.length - 1;
-
-        if (hasEmptyValue && !isLast) {
-            this.webIdentities.removeAt(index);
-        }
     }
 
     get formState() {
         return toFormState(this.profileForm);
     }
-
-    // updateFormState() {
-    //     const formState = toFormState(this.profileForm);
-
-    //     const updatedFormState = formBehavior(formState);
-
-    //     applyFormState(
-    //         this.profileForm,
-    //         updatedFormState
-    //     );
-    // }
-
 }
 
-function formBehavior(formState: FormGroupState): Observable<FormGroupState> {
+function applyFormBehavior(
+    formState: FormGroupState,
+    prevFormState: FormGroupState,
+    diff: any
+): Observable<FormGroupState> {
     const updatedFormState = cloneDeep(formState);
 
     if (formState.controls.firstName.value === 'Marvin') {
@@ -115,5 +100,15 @@ function formBehavior(formState: FormGroupState): Observable<FormGroupState> {
         updatedFormState.controls.lastName.disabled = true;
     }
 
+    (<FormArrayState> updatedFormState.controls.webIdentities).controls = [
+        ...(<FormArrayState> formState.controls.webIdentities).controls
+            .filter(control => !isEmpty(control.value)),
+        formControlState({})
+    ];
+
+    console.log((<FormArrayState> formState.controls.webIdentities).controls.map(c => c.value));
+
     return of(updatedFormState);
 }
+
+window['toFormState'] = toFormState;
