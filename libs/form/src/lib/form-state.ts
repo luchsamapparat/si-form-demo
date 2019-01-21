@@ -25,22 +25,17 @@ function applyState(control: AbstractControl, controlState: AbstractControlState
 function applyFormGroupState(formGroup: FormGroup, formGroupState: FormGroupState) {
     applyAbstractFormState(formGroup, formGroupState);
 
-    const removedControls = difference(
-        keys(formGroup.controls),
-        keys(formGroupState.controls)
-    );
+    getRemovedControls(
+        formGroup,
+        formGroupState
+    )
+        .forEach(name => formGroup.removeControl(name));
 
-    removedControls.forEach(name => formGroup.removeControl(name));
-
-    const addedControls = difference(
-        keys(formGroupState.controls),
-        keys(formGroup.controls)
-    );
-
-    addedControls.forEach(name => {
-        const controlState = formGroupState.controls[name];
-        formGroup.addControl(name, createControl(controlState));
-    });
+    getAddedControls(
+        formGroup,
+        formGroupState
+    )
+        .forEach(name => formGroup.addControl(name, createControl(formGroupState.controls[name])));
 
     const remainingControls = intersection(
         keys(formGroup.controls),
@@ -96,6 +91,20 @@ function applyAbstractFormState(control: AbstractControl, controlState: Abstract
     if (controlState.errors !== control.errors) {
         control.setErrors(controlState.errors, { emitEvent: false });
     }
+}
+
+function getAddedControls(formGroup: FormGroup, formGroupState: FormGroupState) {
+    return difference(
+        keys(formGroupState.controls),
+        keys(formGroup.controls)
+    );
+}
+
+function getRemovedControls(formGroup: FormGroup, formGroupState: FormGroupState) {
+    return difference(
+        keys(formGroup.controls),
+        keys(formGroupState.controls)
+    );
 }
 
 type ControlType = typeof FormControl | typeof FormArray | typeof FormGroup;
